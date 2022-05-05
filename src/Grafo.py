@@ -23,7 +23,7 @@ class Grafo:
             print("Aresta Inválida")
 
     def remove_aresta(self, source, destiny):
-        if source < self.num_vert and destiny < self.num_vert:
+        if source < self.num_vet and destiny < self.num_vet:
             if self.mat_adj[source][destiny] != 0:
                 self.num_arestas -= 1
                 self.mat_adj[source][destiny] = 0
@@ -62,7 +62,7 @@ class Grafo:
             str = str.split(" ")
             self.num_vet = int(str[0])
             self.num_arestas = int(str[1])
-            print(f"Leitura numero de arestas: f{self.num_arestas}")
+            print(f"Leitura numero de arestas: {self.num_arestas}")
             self.lista_adj = [[] for i in range(self.num_vet)]
             self.mat_adj = [[0 for i in range(self.num_vet)] for j in range(self.num_vet)]
 
@@ -86,11 +86,11 @@ class Grafo:
 
         return float(densidade)
 
-    def subgrafo(self, g2: Grafo):
+    def subgrafo(self, g2):
         # verificar se g2 tem mais vertices que self
         # percorrer a matriz de adjacencia de g2
         # se alguma posição da matriz adj de g2 é != 0 e == 0 em self return False
-        if g2.num_vert > self.num_vert:
+        if g2.num_vert > self.num_vet:
             return False
         for i in range(len(g2.mat_adj)):
             for j in range(len(g2.mat_adj[i])):
@@ -101,7 +101,7 @@ class Grafo:
     def busca_largura(self, s):
         """Retorna a ordem de descoberta dos vertices pela
            busca em largura a partir de s"""
-        desc = [0 for v in range(self.num_vert)]
+        desc = [0 for v in range(self.num_vet)]
         Q = [s]
         R = [s]
         desc[s] = 1
@@ -117,7 +117,7 @@ class Grafo:
     def busca_profundidade(self, s):
         """Retorna a ordem de descoberta dos vertices pela
            busca em profundidade a partir de s"""
-        desc = [0 for v in range(self.num_vert)]
+        desc = [0 for v in range(self.num_vet)]
         S = [s]
         R = [s]
         desc[s] = 1
@@ -138,7 +138,7 @@ class Grafo:
     def conexo(self, s):
         """Retorna Ture se o grafo e conexo e False caso contrario
            baseado na busca em largura"""
-        desc = [0 for v in range(self.num_vert)]
+        desc = [0 for v in range(self.num_vet)]
         Q = [s]
         R = [s]
         desc[s] = 1
@@ -157,8 +157,8 @@ class Grafo:
     def ciclo(self, s):
         """Retorna Ture se o grafo tem ciclo e False caso contrario
            baseado na busca em largura"""
-        desc = [0 for v in range(self.num_vert)]
-        for s in range(self.num_vert):
+        desc = [0 for v in range(self.num_vet)]
+        for s in range(self.num_vet):
             if desc[s] == 0:
                 Q = [s]
                 R = [s]

@@ -1,4 +1,4 @@
-from .domain.models.Grafo import Grafo
+from Grafo import Grafo
 
 g1 = Grafo()
 g1.ler_arquivo("grafo1.txt")
